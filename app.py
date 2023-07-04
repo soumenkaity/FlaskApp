@@ -15,13 +15,13 @@ def create_db_table():
     try:
         conn = connect_to_db()
         conn.execute('''
-            CREATE TABLE meters (
+            CREATE TABLE IF NOT EXISTS meters (
                 meter_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-                label VARCHAR(20) NOT NULL
+                label VARCHAR(20) NOT NULL UNIQUE
             );
         ''')
         conn.execute('''
-            CREATE TABLE meter_data (
+            CREATE TABLE IF NOT EXISTS meter_data (
                 id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                 meter_id INTEGER NOT NULL,
                 timestamp TIMESTAMP NOT NULL,
