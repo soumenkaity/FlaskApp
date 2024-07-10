@@ -22,8 +22,9 @@ jobs:
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensure the token is passed correctly
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         draft: false
@@ -31,9 +32,10 @@ jobs:
 
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Ensure the token is passed correctly
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: SeleGenPOC.zip
         asset_name: SeleGenPOC.zip
         asset_content_type: application/zip
-        token: ${{ secrets.GITHUB_TOKEN }}
