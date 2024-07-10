@@ -23,6 +23,7 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       with:
+        token: ${{ secrets.GITHUB_TOKEN }}
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
         draft: false
@@ -35,3 +36,4 @@ jobs:
         asset_path: SeleGenPOC.zip
         asset_name: SeleGenPOC.zip
         asset_content_type: application/zip
+        token: ${{ secrets.GITHUB_TOKEN }}
